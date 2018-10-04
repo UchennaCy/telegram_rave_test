@@ -20,3 +20,24 @@ const products = [
     photoUrl: 'https://vignette2.wikia.nocookie.net/fallout/images/b/b9/Iguana_on_a_stick.png'
   }
 ]
+
+// Start command
+app.command('start', ({ reply }) => reply('Welcome, nice to meet you! I can sell you various products. Just ask.'))
+
+// Show offer
+app.hears(/^what.*/i, ({ replyWithMarkdown }) => replyWithMarkdown(`
+You want to know what I have to offer? Sure!
+${products.reduce((acc, p) => acc += `*${p.name}* - ${p.price} €\n`, '')}    
+What do you want?`,
+Markup.keyboard(products.map(p => p.name)).oneTime().resize().extra()
+))
+
+// Order product
+products.forEach(p => {
+  app.hears(p.name, (ctx) => {
+    console.log(`${ctx.from.first_name} is about to buy a ${p.name}.`)
+    replyWithInvoice(createInvoice(p))
+  })
+})
+
+app.startPolling()
