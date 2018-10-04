@@ -3,8 +3,8 @@
 const Telegraf = require('telegraf')
 const { Markup } = Telegraf
 
-const app = new Telegraf('660147933:AAHpU1cPneH4DHbNHfPqWV4LpQllxlza_68')
-const PAYMENT_TOKEN = '5cd84726d6a6328d70a1c1ec0bc0b7ab'
+const app = new Telegraf('Token_Key from BOT')
+const PAYMENT_TOKEN = 'Payment gateway provider'
 
 const products = [
   {
@@ -42,10 +42,9 @@ app.command('start', ({ reply }) => reply('Welcome, nice to meet you! I can sell
 // Show offer
 app.hears(/^what.*/i, ({ replyWithMarkdown }) => replyWithMarkdown(`
 You want to know what I have to offer? Sure!
-${products.reduc((acc, p) => acc += `*${p.name}* - ${p.price} N\n`, '')}    
+${products.reduce((acc, p) => acc += `*${p.name}* - ${p.price} N\n`, '')}    
 What do you want?`,
-Markup.keyboard(products.map(p => p.name)).oneTime().resize().extra()
-))
+Markup.keyboard(products.map(p => p.name)).oneTime().resize().extra()))
 
 // Order product
 products.forEach(p => {
