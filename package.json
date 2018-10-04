@@ -1,0 +1,20 @@
+{
+  "name": "telegram-store",
+  "version": "1.0.0",
+  "description": "A basic demo bot to do telegram payment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Rave",
+    "telegram",
+    "bot",
+    "payment"
+  ],
+  "author": "Nnamadim Cyril Uchenna",
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^3.24.0"
+  }
+}
